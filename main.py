@@ -2,18 +2,17 @@ from PyPDF2 import PdfFileMerger
 import os
 import datetime
 
-# 365
-# 2
-# 156
-
-os.chdir('./Vintage Yellow Schedule Book 2')
+os.chdir('./New')
 
 cover = 'cover.pdf'
-day = 'day.pdf'
 newyear = 'newyear.pdf'
+savings = 'savings.pdf'
+todo = 'todo.pdf'
 grocery = 'grocery.pdf'
 workout = 'workout.pdf'
-weekly = 'weekly.pdf'
+weekly1 = 'weekly1.pdf'
+weekly2 = 'weekly2.pdf'
+
 
 merger = PdfFileMerger()
 
@@ -23,17 +22,14 @@ merger.append(cover)
 # add newyear page
 merger.append(newyear)
 
-tracking_date = datetime.date(2022, 1, 1)
+# add newyear page
+merger.append(savings)
 
 for i in range(0, 52):
-    merger.append(weekly)
-    merger.append(workout)
+    merger.append(todo)
     merger.append(grocery)
-
-    for i in range(0,7):
-        tracking_date += datetime.timedelta(days=1)
-        print(tracking_date)
-        merger.append(day)
+    merger.append(workout)
+    merger.append(weekly2)
 
 merger.write("result.pdf")
 merger.close()
